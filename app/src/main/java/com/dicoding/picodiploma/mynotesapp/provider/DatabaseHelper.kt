@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mynotesapp.db
+package com.dicoding.picodiploma.mynotesapp.provider
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

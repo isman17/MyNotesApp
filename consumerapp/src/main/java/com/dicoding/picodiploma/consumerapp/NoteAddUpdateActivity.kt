@@ -1,22 +1,21 @@
-package com.dicoding.picodiploma.mynotesapp
+package com.dicoding.picodiploma.consumerapp
 
 import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.dicoding.picodiploma.mynotesapp.databinding.ActivityNoteAddUpdateBinding
-import com.dicoding.picodiploma.mynotesapp.db.DatabaseContract
-import com.dicoding.picodiploma.mynotesapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
-import com.dicoding.picodiploma.mynotesapp.db.DatabaseContract.NoteColumns.Companion.DATE
-import com.dicoding.picodiploma.mynotesapp.provider.NoteHelper
-import com.dicoding.picodiploma.mynotesapp.entity.Note
-import com.dicoding.picodiploma.mynotesapp.helper.MappingHelper
+import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.picodiploma.consumerapp.databinding.ActivityNoteAddUpdateBinding
+import com.dicoding.picodiploma.consumerapp.db.DatabaseContract
+import com.dicoding.picodiploma.consumerapp.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
+import com.dicoding.picodiploma.consumerapp.db.DatabaseContract.NoteColumns.Companion.DATE
+import com.dicoding.picodiploma.consumerapp.entity.Note
+import com.dicoding.picodiploma.consumerapp.helper.MappingHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,7 +24,7 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     private var isEdit = false
     private var note: Note? = null
     private var position: Int = 0
-    private lateinit var noteHelper: NoteHelper
+//    private lateinit var noteHelper: NoteHelper
     private lateinit var uriWithId: Uri
 
     private lateinit var binding: ActivityNoteAddUpdateBinding
@@ -47,8 +46,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityNoteAddUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        noteHelper = NoteHelper.getInstance(applicationContext)
-        noteHelper.open()
+//        noteHelper = NoteHelper.getInstance(applicationContext)
+//        noteHelper.open()
         note = intent.getParcelableExtra(EXTRA_NOTE)
         if (note != null) {
             position = intent.getIntExtra(EXTRA_POSITION, 0)
@@ -70,9 +69,9 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
 
             actionBarTitle = "Ubah"
             btnTitle = "Update"
-            note?.let {
-                binding.edtTitle.setText(it.title)
-                binding.edtDescription.setText(it.description)
+            note.let {
+                binding.edtTitle.setText(it?.title)
+                binding.edtDescription.setText(it?.description)
             }
         } else {
             actionBarTitle = "Tambah"

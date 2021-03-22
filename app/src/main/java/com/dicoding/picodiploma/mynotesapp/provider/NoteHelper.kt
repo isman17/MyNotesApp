@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.mynotesapp.db
+package com.dicoding.picodiploma.mynotesapp.provider
 
 import android.content.ContentValues
 import android.content.Context
@@ -114,7 +114,8 @@ class NoteHelper(context: Context) {
      */
     fun getAllNotes(): ArrayList<Note> {
         val arrayList = ArrayList<Note>()
-        val cursor = database.query(DATABASE_TABLE, null, null, null, null, null,
+        val cursor = database.query(
+            DATABASE_TABLE, null, null, null, null, null,
             "$_ID ASC", null)
         cursor.moveToFirst()
         var note: Note
